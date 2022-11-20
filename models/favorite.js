@@ -10,9 +10,7 @@ class Favorite {
   /** Create a favorite (from data), update db, 
    * return new favorite league/team data.
    *
-   * data should be { username, favorite_id }
-   *
-   * Returns { username, favorite_id }
+   * Returns { username, type_id } where type is league, cup or team
    *
    * Throws BadRequestError if favorite already in database.
    * */
@@ -53,7 +51,6 @@ class Favorite {
    * */
 
     static async findAll(username, type) {
-      // console.log("**************************************/");
       const favsRes = await db.query(
         `SELECT username, 
                 ${type}_id AS "id", 

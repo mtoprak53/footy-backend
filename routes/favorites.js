@@ -6,7 +6,7 @@ const jsonschema = require("jsonschema");
 const express = require("express");
 
 const { BadRequestError } = require("../expressError");
-const { ensureLoggedIn, ensureCorrectUserOrAdmin } = require("../middleware/auth");
+const { ensureCorrectUserOrAdmin } = require("../middleware/auth");
 const Favorite = require("../models/favorite");
 
 const favoriteNewSchema = require("../schemas/favoriteNew.json");
@@ -20,12 +20,10 @@ const router = new express.Router();
  *
  * Returns { username, favorite_id, type }
  *
- * Authorization required: admin
+ * Authorization required: correct user or admin
  */
 
 router.post("/:username", ensureCorrectUserOrAdmin, async function (req, res, next) {
-  // console.log("POST  >>  FAVORITES/");
-  // console.log(req.body);
   try {
     const { username } = req.params;
     const { favorite_id, type } = req.body;
@@ -45,16 +43,15 @@ router.post("/:username", ensureCorrectUserOrAdmin, async function (req, res, ne
 
 
 /** GET /  =>
- *   { favorite: [ { username, favorite_id, type }, ...] }
- * *
- * Authorization required: none
+ *  { favorite: [ { username, favorite_id, type }, ...] }
+ * 
+ * Authorization required: correct user or admin
  */
 
 router.get("/:username/:type", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
     const { username, type } = req.params;
     const favorites = await Favorite.findAll(username, type);
-    // console.log(favorites);
     return res.json({ favorites });
   } catch (err) {
     return next(err);
@@ -65,7 +62,7 @@ router.get("/:username/:type", ensureCorrectUserOrAdmin, async function (req, re
 /** DELETE /[ { username, favorite_id, type } ]  =>  
  *            { deleted: { username, favorite_id, type } }
  *
- * Authorization: admin
+ * Authorization: correct user or admin
  */
 
 router.delete("/:username/:type/:favorite_id", ensureCorrectUserOrAdmin, async function (req, res, next) {

@@ -58,7 +58,6 @@ class User {
   static async register(
       { username, password, email, continent, city, isAdmin }) {
 
-    // console.log({ username, password, email, continent, city, isAdmin });
     const duplicateCheck = await db.query(
           `SELECT username
            FROM users
@@ -79,9 +78,6 @@ class User {
         [continent, city]
     );
     const timezone = resTz.rows[0].code;
-    // console.log("timezone", timezone);
-
-    // const timezone = `${continent}/${city}`
 
     const result = await db.query(
           `INSERT INTO users

@@ -1,6 +1,6 @@
 "use strict";
 
-/** Express app for Football Info App */
+/** Express app for Footy */
 
 const express = require("express");
 const cors = require("cors");
@@ -35,14 +35,10 @@ app.use(function (req, res, next) {
 
 /** Generic error handler; anything unhandled goes here */
 app.use(function (err, req, res, next) {
-  // if (process.env.NODE_ENV !== "test" &&
-  //     process.env.NODE_ENV !== "other") {
   if (err.stack &&
       process.env.NODE_ENV !== "test" &&
-      // process.env.NODE_ENV !== "" &&
       process.env.NODE_ENV !== "other") {
     console.log(process.env.NODE_ENV);
-    // console.log(NotFoundError());
     console.error(err.stack);
   }
   const status = err.status || 500;

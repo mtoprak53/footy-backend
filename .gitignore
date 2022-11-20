@@ -1,5 +1,3 @@
-__obsolete
-_database
-_sample_responses
-_sqlBuilders
-node_modules
+
+# dependencies
+/node_modules

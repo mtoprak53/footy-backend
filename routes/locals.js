@@ -13,8 +13,8 @@ const router = new express.Router();
 
 /** GET /  =>
  *   { favorite: [ { username, favorite_id, type }, ...] }
- * *
- * Authorization required: none
+ * 
+ * Authorization required: logged in
  */
 
 router.post("/team", ensureLoggedIn, async function (req, res, next) {
@@ -36,7 +36,7 @@ router.post("/team", ensureLoggedIn, async function (req, res, next) {
 
 /** GET /  =>
  *   { favorite: [ { username, favorite_id, type }, ...] }
- * *
+ * 
  * Authorization required: none
  */
 
@@ -53,11 +53,11 @@ router.get("/timezones/:continent", async function (req, res, next) {
 
 /** GET /  =>
  *   { favorite: [ { username, favorite_id, type }, ...] }
- * *
- * Authorization required: none
+ * 
+ * Authorization required: logged in
  */
 
-router.get("/countries", async function (req, res, next) {
+router.get("/countries", ensureLoggedIn, async function (req, res, next) {
   console.log(`GET locals/countries`);
   try {
     const countries = await Local.getLeagueCountries();
@@ -70,11 +70,11 @@ router.get("/countries", async function (req, res, next) {
 
 /** GET /  =>
  *   { favorite: [ { username, favorite_id, type }, ...] }
- * *
- * Authorization required: none
+ * 
+ * Authorization required: logged in
  */
 
-router.get("/team/:id", async function (req, res, next) {
+router.get("/team/:id", ensureLoggedIn, async function (req, res, next) {
   console.log(`GET locals/team/:id`);
   try {
     const team = await Local.getTeam(req.params.id);
@@ -87,11 +87,11 @@ router.get("/team/:id", async function (req, res, next) {
 
 /** GET /  =>
  *   { favorite: [ { username, favorite_id, type }, ...] }
- * *
- * Authorization required: none
+ * 
+ * Authorization required: logged in
  */
 
-router.get("/leagues/:country", async function (req, res, next) {
+router.get("/leagues/:country", ensureLoggedIn, async function (req, res, next) {
   console.log(`GET locals/leagues/:country`);
   try {
     const leagues = await Local.getCountrysLeagues(req.params.country);
@@ -104,11 +104,11 @@ router.get("/leagues/:country", async function (req, res, next) {
 
 /** GET /  =>
  *   { favorite: [ { username, favorite_id, type }, ...] }
- * *
- * Authorization required: none
+ * 
+ * Authorization required: logged in
  */
 
-router.get("/cups/:id", async function (req, res, next) {
+router.get("/cups/:id", ensureLoggedIn, async function (req, res, next) {
   console.log(`GET locals/cups/:id`);
   try {
     const cup = await Local.getCupById(+req.params.id);

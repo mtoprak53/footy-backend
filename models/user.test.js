@@ -12,7 +12,6 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  // testJobIds,
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -58,7 +57,6 @@ describe("register", function () {
   const newUser = {
     username: "new",
     email: "test@test.com",
-    // timezone: "Europe/Istanbul",
     continent: "Europe",
     city: "Istanbul",
     isAdmin: false,
@@ -68,8 +66,6 @@ describe("register", function () {
     username: "new",
     email: "test@test.com",
     timezone: "Europe/Istanbul",
-    // continent: "Europe",
-    // city: "Istanbul",
     isAdmin: false,
   };
 
@@ -78,7 +74,6 @@ describe("register", function () {
       ...newUser,
       password: "password",
     });
-    // expect(user).toEqual(newUser);
     expect(user).toEqual(newRegisteredUser);
     const found = await db.query("SELECT * FROM users WHERE username = 'new'");
     expect(found.rows.length).toEqual(1);
@@ -92,7 +87,6 @@ describe("register", function () {
       password: "password",
       isAdmin: true,
     });
-    // expect(user).toEqual({ ...newUser, isAdmin: true });
     expect(user).toEqual({ ...newRegisteredUser, isAdmin: true });
     const found = await db.query("SELECT * FROM users WHERE username = 'new'");
     expect(found.rows.length).toEqual(1);
@@ -104,12 +98,10 @@ describe("register", function () {
     try {
       await User.register({
         ...newUser,
-        // ...newRegisteredUser,
         password: "password",
       });
       await User.register({
         ...newUser,
-        // ...newRegisteredUser,
         password: "password",
       });
       fail();
@@ -129,16 +121,12 @@ describe("findAll", function () {
         username: "u1",
         email: "u1@email.com",
         timezone: "Europe/Istanbul",
-        // continent: "Europe",
-        // city: "Istanbul",
         isAdmin: false,
       },
       {
         username: "u2",
         email: "u2@email.com",
         timezone: "America/New_York",
-        // continent: "America",
-        // city: "New_York",
         isAdmin: false,
       },
     ]);
@@ -174,14 +162,11 @@ describe("update", function () {
   const updateData = {
     email: "new@email.com",
     timezone: "Asia/Dubai",
-    // continent: "Asia",
-    // city: "Dubai",
     isAdmin: true,
   };
 
   const updatedData = {
     email: "new@email.com",
-    // timezone: "Asia/Dubai",
     continent: "Asia",
     city: "Dubai",
     isAdmin: true,
@@ -192,7 +177,6 @@ describe("update", function () {
     expect(job).toEqual({
       username: "u1",
       ...updateData,
-      // ...updatedData,
     });
   });
 

@@ -22,7 +22,6 @@ const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;
 
 if (process.env.NODE_ENV !== "test" &&
     process.env.NODE_ENV !== "other") {
-  // console.log();
   console.log(getDatabaseUri());
   console.log(process.env.NODE_ENV);
   console.log("\n**********".blue);
@@ -33,7 +32,6 @@ if (process.env.NODE_ENV !== "test" &&
   console.log("BCRYPT_WORK_FACTOR:".yellow, BCRYPT_WORK_FACTOR.toString());
   console.log("Database:".yellow, getDatabaseUri());
   console.log("**********\n".blue);
-  // console.log();  
 }
 
 module.exports = {

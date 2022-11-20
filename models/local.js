@@ -3,7 +3,7 @@
 const db = require("../db");
 const { BadRequestError } = require("../expressError");
 
-/** Related functions for favorites. */
+/** Related functions for locals. */
 
 class Local {
 

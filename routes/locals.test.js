@@ -9,7 +9,6 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  // testJobIds,
   u1Token,
   adminToken,
 } = require("./_testCommon");
@@ -19,7 +18,7 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-/************************************** POST /companies */
+/************************************** POST /team */
 
 describe("POST /locals/team", function () {
   const newTeam = {

@@ -60,7 +60,6 @@ CREATE TABLE teams (
   national BOOLEAN NOT NULL, 
   logo_url TEXT,
   venue_id INTEGER 
-    -- REFERENCES venues ON DELETE CASCADE
 );
 
 CREATE TABLE favorite_leagues (
