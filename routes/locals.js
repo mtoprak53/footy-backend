@@ -57,7 +57,7 @@ router.get("/timezones/:continent", async function (req, res, next) {
  * Authorization required: logged in
  */
 
-router.get("/countries", ensureLoggedIn, async function (req, res, next) {
+router.get("/countries", async function (req, res, next) {
   console.log(`GET locals/countries`);
   try {
     const countries = await Local.getLeagueCountries();
